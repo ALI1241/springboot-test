@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>demo-test</artifactId>
+  <version>1.0.0</version>
+
+  <name>demo-test</name>
+  <description>测试</description>
+
+  <parent>
+    <groupId>com.demo</groupId>
+    <artifactId>springboot-test</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <dependencies>
+    <!--SpringBoot Web-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!--项目父模板-->
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>parent</artifactId>
+      <type>pom</type>
+    </dependency>
+    <!--高性能时钟-->
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>clock</artifactId>
+    </dependency>
+    <!--雪花ID生成器-->
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>id</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>id-spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <!--IP地址转区域-->
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>ip2region</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>ip2region-spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <!--手机号码转区域-->
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>phone2region</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>phone2region-spring-boot-autoconfigure</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <!--打包时排除的依赖-->
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

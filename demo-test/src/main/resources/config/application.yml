@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 4GB
+      max-request-size: 4GB
+
+id:
+  machine-id: 0
+  machine-bits: 8
+  sequence-bits: 14
+
+ip2region:
+  resource-path: /file/ip2region/ip2region.zdb
+
+phone2region:
+  resource-path: /file/phone2region/phone2region.zdb
+
+logging:
+  file:
+    name: /log/demo-test.log

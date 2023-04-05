@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.demo</groupId>
+  <artifactId>springboot-test</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0.0</version>
+
+  <name>springboot-test</name>
+  <description>SpringBoot测试</description>
+
+  <parent>
+    <!--SpringBoot Parent-->
+    <!--请使用2.x.x版本-->
+    <!--org.springframework.boot:spring-boot-starter-parent-->
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.10</version>
+  </parent>
+
+  <modules>
+    <module>demo-test</module>
+  </modules>
+
+  <properties>
+    <!--基础配置-->
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!--项目父模板-->
+    <!--cn.404z:parent-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/parent -->
+    <cn.404z.parent.version>1.2.0</cn.404z.parent.version>
+
+    <!--高性能时钟-->
+    <!--cn.404z:clock-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/clock -->
+    <clock.version>2.3.0</clock.version>
+
+    <!--雪花ID生成器-->
+    <!--cn.404z:id-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/id -->
+    <!--cn.404z:id-spring-boot-autoconfigure-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/id-spring-boot-autoconfigure -->
+    <id.version>2.5.0</id.version>
+
+    <!--IP地址转区域-->
+    <!--cn.404z:ip2region-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/ip2region -->
+    <!--cn.404z:ip2region-spring-boot-autoconfigure-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/ip2region-spring-boot-autoconfigure -->
+    <ip2region.version>3.0.1</ip2region.version>
+
+    <!--手机号码转区域-->
+    <!--cn.404z:phone2region-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/phone2region -->
+    <!--cn.404z:phone2region-spring-boot-autoconfigure-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/phone2region-spring-boot-autoconfigure -->
+    <phone2region.version>2.0.0</phone2region.version>
+
+  </properties>
+
+  <dependencies>
+    <!--热部署-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <!--测试-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!--实体层注解-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!--日志-->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <!--项目父模板-->
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>parent</artifactId>
+        <version>${cn.404z.parent.version}</version>
+        <type>pom</type>
+      </dependency>
+      <!--高性能时钟-->
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>clock</artifactId>
+        <version>${clock.version}</version>
+      </dependency>
+      <!--雪花ID生成器-->
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>id-spring-boot-autoconfigure</artifactId>
+        <version>${id.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>cn.404z</groupId>
+            <artifactId>id</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>id</artifactId>
+        <version>${id.version}</version>
+      </dependency>
+      <!--IP地址转区域-->
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>ip2region-spring-boot-autoconfigure</artifactId>
+        <version>3.0.0</version>
+        <exclusions>
+          <exclusion>
+            <groupId>cn.404z</groupId>
+            <artifactId>ip2region</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>ip2region</artifactId>
+        <version>${ip2region.version}</version>
+      </dependency>
+      <!--手机号码转区域-->
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>phone2region-spring-boot-autoconfigure</artifactId>
+        <version>1.1.0</version>
+        <exclusions>
+          <exclusion>
+            <groupId>cn.404z</groupId>
+            <artifactId>phone2region</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>phone2region</artifactId>
+        <version>${phone2region.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <profiles>
+    <profile>
+      <id>install</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <!--指定编译的jdk版本-->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <source>${java.version}</source>
+              <target>${java.version}</target>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
