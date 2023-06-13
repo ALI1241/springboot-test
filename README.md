@@ -1,8 +1,8 @@
 # springboot-test SpringBoot测试
 
-[![License](https://img.shields.io/github/license/ali1241/springboot-test?label=License)](https://opensource.org/licenses/BSD-3-Clause)
+[![License](https://img.shields.io/github/license/ALI1241/springboot-test?label=License)](https://opensource.org/licenses/BSD-3-Clause)
 [![Java Support](https://img.shields.io/badge/Java-8+-green)](https://openjdk.org/)
-[![Repo Size](https://img.shields.io/github/repo-size/ali1241/springboot-test?label=Repo%20Size&color=success)](https://github.com/ALI1241/springboot-test/archive/refs/heads/master.zip)
+[![Repo Size](https://img.shields.io/github/repo-size/ALI1241/springboot-test?label=Repo%20Size&color=success)](https://github.com/ALI1241/springboot-test/archive/refs/heads/master.zip)
 
 ## 简介
 
@@ -28,15 +28,14 @@ SpringBoot测试
   ![Maven Central](https://img.shields.io/maven-central/v/cn.404z/phone2region?label=Maven%20Central)
 - `手机号码区域SpringBoot自动配置` : `cn.404z:phone2region-spring-boot-autoconfigure`  
   ![Maven Central](https://img.shields.io/maven-central/v/cn.404z/phone2region-spring-boot-autoconfigure?label=Maven%20Central)
+- `二维码生成器Java版` : `cn.404z:qrcode-encoder`  
+  ![Maven Central](https://img.shields.io/maven-central/v/cn.404z/qrcode-encoder?label=Maven%20Central)
 
-## 交流
+## 关于
 
-- [x] QQ：`1416978277`
-- [x] 微信：`1416978277`
-- [x] 支付宝：`1416978277@qq.com`
-
-![交流](https://cdn.jsdelivr.net/gh/ALI1416/ALI1416/image/contact.png)
-
-## 赞助
-
-![赞助](https://cdn.jsdelivr.net/gh/ALI1416/ALI1416/image/donate.png)
+<object data="https://404z.cn/images/about.svg" style="max-width:100%;">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://404z.cn/images/about.dark.svg">
+    <img alt="About" src="https://404z.cn/images/about.light.svg">
+  </picture>
+</object>

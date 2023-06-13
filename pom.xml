@@ -38,33 +38,38 @@
     <!--项目父模板-->
     <!--cn.404z:parent-->
     <!-- https://mvnrepository.com/artifact/cn.404z/parent -->
-    <cn.404z.parent.version>1.2.0</cn.404z.parent.version>
+    <cn.404z.parent.version>1.3.0</cn.404z.parent.version>
 
     <!--高性能时钟-->
     <!--cn.404z:clock-->
     <!-- https://mvnrepository.com/artifact/cn.404z/clock -->
-    <clock.version>2.3.0</clock.version>
+    <clock.version>2.4.0</clock.version>
 
     <!--雪花ID生成器-->
     <!--cn.404z:id-->
     <!-- https://mvnrepository.com/artifact/cn.404z/id -->
     <!--cn.404z:id-spring-boot-autoconfigure-->
     <!-- https://mvnrepository.com/artifact/cn.404z/id-spring-boot-autoconfigure -->
-    <id.version>2.5.0</id.version>
+    <id.version>2.6.0</id.version>
 
     <!--IP地址转区域-->
     <!--cn.404z:ip2region-->
     <!-- https://mvnrepository.com/artifact/cn.404z/ip2region -->
     <!--cn.404z:ip2region-spring-boot-autoconfigure-->
     <!-- https://mvnrepository.com/artifact/cn.404z/ip2region-spring-boot-autoconfigure -->
-    <ip2region.version>3.0.1</ip2region.version>
+    <ip2region.version>3.1.0</ip2region.version>
 
     <!--手机号码转区域-->
     <!--cn.404z:phone2region-->
     <!-- https://mvnrepository.com/artifact/cn.404z/phone2region -->
     <!--cn.404z:phone2region-spring-boot-autoconfigure-->
     <!-- https://mvnrepository.com/artifact/cn.404z/phone2region-spring-boot-autoconfigure -->
-    <phone2region.version>2.0.0</phone2region.version>
+    <phone2region.version>2.1.0</phone2region.version>
+
+    <!--二维码生成器Java版-->
+    <!--cn.404z:qrcode-encoder-->
+    <!-- https://mvnrepository.com/artifact/cn.404z/qrcode-encoder -->
+    <qrcode-encoder.version>1.1.0</qrcode-encoder.version>
   </properties>
 
   <dependencies>
@@ -165,6 +170,12 @@
             <artifactId>phone2region</artifactId>
           </exclusion>
         </exclusions>
+      </dependency>
+      <!--二维码生成器Java版-->
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>qrcode-encoder</artifactId>
+        <version>${qrcode-encoder.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
