@@ -59,6 +59,11 @@
       <groupId>cn.404z</groupId>
       <artifactId>phone2region-spring-boot-autoconfigure</artifactId>
     </dependency>
+    <!--二维码生成器Java版-->
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>qrcode-encoder</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
