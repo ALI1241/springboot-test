@@ -14,12 +14,10 @@
 
   <parent>
     <!--SpringBoot Parent-->
-    <!--请使用2.x.x版本-->
     <!--org.springframework.boot:spring-boot-starter-parent-->
-    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.10</version>
+    <version>3.5.8</version>
   </parent>
 
   <modules>
@@ -27,8 +25,7 @@
   </modules>
 
   <properties>
-    <!--基础配置-->
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
@@ -37,39 +34,38 @@
 
     <!--项目父模板-->
     <!--cn.404z:parent-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/parent -->
-    <cn.404z.parent.version>1.3.0</cn.404z.parent.version>
+    <cn.404z.parent.version>1.7.0</cn.404z.parent.version>
 
     <!--高性能时钟-->
     <!--cn.404z:clock-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/clock -->
-    <clock.version>2.4.0</clock.version>
+    <clock.version>2.8.0</clock.version>
 
     <!--雪花ID生成器-->
     <!--cn.404z:id-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/id -->
     <!--cn.404z:id-spring-boot-autoconfigure-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/id-spring-boot-autoconfigure -->
-    <id.version>2.6.0</id.version>
+    <id.version>3.4.0.single</id.version>
 
     <!--IP地址转区域-->
     <!--cn.404z:ip2region-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/ip2region -->
     <!--cn.404z:ip2region-spring-boot-autoconfigure-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/ip2region-spring-boot-autoconfigure -->
-    <ip2region.version>3.1.0</ip2region.version>
+    <ip2region.version>3.4.0</ip2region.version>
 
     <!--手机号码转区域-->
     <!--cn.404z:phone2region-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/phone2region -->
     <!--cn.404z:phone2region-spring-boot-autoconfigure-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/phone2region-spring-boot-autoconfigure -->
-    <phone2region.version>2.1.0</phone2region.version>
+    <phone2region.version>2.4.0</phone2region.version>
 
-    <!--二维码生成器Java版-->
+    <!--二维码生成器-->
     <!--cn.404z:qrcode-encoder-->
-    <!-- https://mvnrepository.com/artifact/cn.404z/qrcode-encoder -->
-    <qrcode-encoder.version>1.1.0</qrcode-encoder.version>
+    <qrcode-encoder.version>1.4.0</qrcode-encoder.version>
+
+    <!--轻量级集群任务SpringBoot启动器-->
+    <!--cn.404z:tiny-task-spring-boot-starter-->
+    <tiny-task.version>1.6.0</tiny-task.version>
+
+    <!--轻量级权限认证SpringBoot启动器-->
+    <!--cn.404z:tiny-token-spring-boot-starter-->
+    <tiny-token.version>1.8.0.v3.auth</tiny-token.version>
   </properties>
 
   <dependencies>
@@ -79,12 +75,6 @@
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
       <optional>true</optional>
-    </dependency>
-    <!--测试-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
     </dependency>
     <!--实体层注解-->
     <dependency>
@@ -171,35 +161,51 @@
           </exclusion>
         </exclusions>
       </dependency>
-      <!--二维码生成器Java版-->
+      <!--二维码生成器-->
       <dependency>
         <groupId>cn.404z</groupId>
         <artifactId>qrcode-encoder</artifactId>
         <version>${qrcode-encoder.version}</version>
       </dependency>
+      <!--轻量级集群任务SpringBoot启动器-->
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>tiny-task-spring-boot-starter</artifactId>
+        <version>${tiny-task.version}</version>
+      </dependency>
+      <!--轻量级权限认证SpringBoot启动器-->
+      <dependency>
+        <groupId>cn.404z</groupId>
+        <artifactId>tiny-token-spring-boot-starter</artifactId>
+        <version>${tiny-token.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
-  <profiles>
-    <profile>
-      <id>install</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <!--指定编译的jdk版本-->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <source>${java.version}</source>
-              <target>${java.version}</target>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

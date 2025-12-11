@@ -21,6 +21,16 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <!--Redis-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    <!--RabbitMQ-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-amqp</artifactId>
+    </dependency>
     <!--项目父模板-->
     <dependency>
       <groupId>cn.404z</groupId>
@@ -59,29 +69,22 @@
       <groupId>cn.404z</groupId>
       <artifactId>phone2region-spring-boot-autoconfigure</artifactId>
     </dependency>
-    <!--二维码生成器Java版-->
+    <!--二维码生成器-->
     <dependency>
       <groupId>cn.404z</groupId>
       <artifactId>qrcode-encoder</artifactId>
     </dependency>
+    <!--轻量级集群任务SpringBoot启动器-->
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>tiny-task-spring-boot-starter</artifactId>
+    </dependency>
+    <!--轻量级权限认证SpringBoot启动器-->
+    <dependency>
+      <groupId>cn.404z</groupId>
+      <artifactId>tiny-token-spring-boot-starter</artifactId>
+    </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <!--打包时排除的依赖-->
-          <excludes>
-            <exclude>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-            </exclude>
-          </excludes>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>
+

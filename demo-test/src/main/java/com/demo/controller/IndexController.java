@@ -5,12 +5,14 @@ import cn.z.id.Id;
 import cn.z.ip2region.Ip2Region;
 import cn.z.phone2region.Phone2Region;
 import cn.z.qrcode.encoder.QRCode;
+import cn.z.tinytoken.T4s;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
@@ -18,6 +20,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 
 /**
@@ -31,10 +34,14 @@ import java.sql.Timestamp;
  * @since 1.0.0
  **/
 @RestController
+@AllArgsConstructor
 public class IndexController {
+
+    private final T4s t4s;
 
     /**
      * 时间
+     * http://localhost:8080/
      */
     @GetMapping(value = {"", "/", "index"})
     public Timestamp index() {
@@ -43,6 +50,7 @@ public class IndexController {
 
     /**
      * id
+     * http://localhost:8080/id
      */
     @GetMapping("id")
     public long id() {
@@ -51,6 +59,7 @@ public class IndexController {
 
     /**
      * IP地址
+     * http://localhost:8080/ip/123.132.0.0
      */
     @GetMapping("ip/{ip}")
     public cn.z.ip2region.Region ip(@PathVariable String ip) {
@@ -59,6 +68,7 @@ public class IndexController {
 
     /**
      * 手机号码
+     * http://localhost:8080/phone/18754710000
      */
     @GetMapping("phone/{phone}")
     public cn.z.phone2region.Region phone(@PathVariable String phone) {
@@ -66,10 +76,11 @@ public class IndexController {
     }
 
     /**
-     * 二维码
+     * 显示二维码
+     * http://localhost:8080/qrShow/123
      */
-    @GetMapping(value = "qr/{content}", produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] qr(@PathVariable String content) {
+    @GetMapping(value = "qrShow/{content}", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] qrShow(@PathVariable String content) {
         QRCode qr = new QRCode(content);
         BufferedImage image = qrMatrix2Image(qr.Matrix, 10);
         return show(image);
@@ -77,12 +88,22 @@ public class IndexController {
 
     /**
      * 下载二维码
+     * http://localhost:8080/qrDownload/123
      */
-    @GetMapping("qr2/{content}")
-    public ResponseEntity<byte[]> qr2(@RequestHeader("User-Agent") String userAgent, @PathVariable String content) {
+    @GetMapping("qrDownload/{content}")
+    public ResponseEntity<byte[]> qrDownload(@PathVariable String content) {
         QRCode qr = new QRCode(content);
         BufferedImage image = qrMatrix2Image(qr.Matrix, 10);
-        return download(userAgent, image, "qr.png");
+        return download(image, "qr.png");
+    }
+
+    /**
+     * 获取Authorization(当前Context)<br>
+     * http://localhost:8080/getAuth
+     */
+    @GetMapping("getAuth")
+    public String getAuth() {
+        return t4s.getAuth();
     }
 
     /**
@@ -129,25 +150,19 @@ public class IndexController {
     /**
      * 下载文件
      *
-     * @param userAgent UserAgent
-     * @param image     BufferedImage
-     * @param fileName  文件名
-     * @return ResponseEntity
+     * @param image    BufferedImage
+     * @param fileName 文件名
+     * @return ResponseEntity byte[]
      */
-    public static ResponseEntity<byte[]> download(String userAgent, BufferedImage image, String fileName) {
+    public static ResponseEntity<byte[]> download(BufferedImage image, String fileName) {
         try {
+            fileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             ImageIO.write(image, "png", stream);
             stream.close();
             BodyBuilder builder = ResponseEntity.ok();
-            builder.contentLength(stream.size());
             builder.contentType(MediaType.APPLICATION_OCTET_STREAM);
-            fileName = URLEncoder.encode(fileName, "UTF-8");
-            if (userAgent.indexOf("MSIE") > 0) {
-                builder.header("Content-Disposition", "attachment;filename=" + fileName);
-            } else {
-                builder.header("Content-Disposition", "attachment;filename*=UTF-8''" + fileName);
-            }
+            builder.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"");
             return builder.body(stream.toByteArray());
         } catch (Exception ignored) {
             return null;

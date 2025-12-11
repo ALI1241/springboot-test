@@ -1,15 +1,26 @@
 spring:
-  profiles:
-    active: dev
+  devtools:
+    restart:
+      enabled: true
   servlet:
     multipart:
       max-file-size: 4GB
       max-request-size: 4GB
+  data:
+    redis:
+      database: 0
+      host: 127.0.0.1
+      port: 6379
+      password:
+      timeout: 10s
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
 id:
-  machine-id: 0
-  machine-bits: 8
-  sequence-bits: 14
+  sequence-bits: 20
 
 ip2region:
   resource-path: /file/ip2region/ip2region.zdb
@@ -17,6 +28,22 @@ ip2region:
 phone2region:
   resource-path: /file/phone2region/phone2region.zdb
 
+tiny-task:
+  thread-pool-size: 10
+  redis:
+    prefix: tinytask
+    timeout: 5
+  rabbit:
+    prefix: tinytask
+    timeout: 5
+
+tiny-token:
+  header: Authorization
+  username: root
+  password: admin
+
 logging:
+  level:
+    root: info
   file:
     name: /log/demo-test.log
